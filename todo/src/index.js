@@ -2,10 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-
 import rootReducer from "./reducer/reducer";
 
-
+import TodoList from './components/todolist'
 
 const store = createStore(
   rootReducer,
@@ -13,8 +12,13 @@ const store = createStore(
 );
 
 function App() {
-  return <div className="App" />;
-}
+    return (
+      <div className="App">
+        <TodoList normalProp="Todos:" />
+      </div>
+    );
+  }
+       
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
@@ -23,3 +27,4 @@ ReactDOM.render(
   </Provider>,
   rootElement
 );
+

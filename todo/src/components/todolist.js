@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { addTodo } from '../actions';
+import { addTodo, toggleTodo, filterTodo } from '../actions';
 
 class TodoList extends React.Component {
   state = {
@@ -20,22 +20,31 @@ class TodoList extends React.Component {
     this.setState({ newTodo: '' });
   };
 
+  toggleTodo = id => {
+    this.props.toggleMember(id);
+  };
+
+  filterTodo = id => {
+    this.props.filterTodo(id);
+  }
+
   render() {
     return (
       <>
-      
+       <h2>{this.props.normalProp}</h2>
         <div className="todo-list">
-          {this.props.members &&
-            this.props.todos.map((todos, index) => <h3>{todos.name}</h3>)}
+
+          {this.props.todos &&
+            this.props.todos.map((todo, index) => <h3>{todo.task}</h3>)}
         </div>
         <input
           type="text"
-          value={this.state.newtodo}
+          value={this.state.newTodo}
           placeholder="Add new todo"
           onChange={this.handleChanges}
         />
-        <button onClick={this.addtodo}>Add todo</button>
-        <button onClick={this.filterTodos}>Clear</button>
+        <button onClick={this.addTodo}>Add todo</button>
+        <button onClick={this.filterTodo}>Clear</button>
       </>
     );
   }
